@@ -12,6 +12,8 @@ module.exports = {
     extends: [
         'airbnb',
         'airbnb/hooks',
+        'eslint:recommended',
+        'plugin:react/recommended',
         'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:prettier/recommended',
@@ -20,8 +22,17 @@ module.exports = {
     ],
     // [rules] 상세 규칙
     rules: {
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': [
+            'error',
+            {
+                // argsIgnorePattern: '^_',
+            },
+        ],
         // var 금지
         'no-var': 'warn',
+        // alert 허용
+        'no-alert': 'off',
         // 일치 연산자 사용 필수
         eqeqeq: 'warn',
         // 컴포넌트의 props 검사 비활성화, propstype 사용하지 않아도 경고 띄우지 않음
@@ -33,10 +44,15 @@ module.exports = {
             2,
             { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
         ],
-        // 화살표 함수의 파라미터가 하나일때 괄호 생략
-        'arrow-parens': ['warn', 'as-needed'],
+        'jsx-a11y/label-has-associated-control': [
+            2,
+            {
+                some: ['nesting', 'id'],
+            },
+        ],
+        'react/no-array-index-key': 'off',
         // 사용하지 않는 변수가 있을 때 발생하는 경고 비활성화
-        'no-unused-vars': ['off'],
+        // 'no-unused-vars': ['off'],
         // 콘솔 사용 시 발생하는 경고 비활성화
         'no-console': ['off'],
         // export문이 하나일 때 default export 사용 권장 경고 비활성화
@@ -53,8 +69,10 @@ module.exports = {
         'prettier/prettier': ['error', { endOfLine: 'auto' }],
         // [error] Function component is not a function declaration
         'react/function-component-definition': [
-            2,
-            { namedComponents: ['arrow-function', 'function-declaration'] },
+            'error',
+            {
+                namedComponents: 'function-declaration',
+            },
         ],
         'react/react-in-jsx-scope': 0,
         'react/prefer-stateless-function': 0,
@@ -62,13 +80,13 @@ module.exports = {
         'no-nested-ternary': 0,
         // [error] Curly braces are unnecessary here
         'react/jsx-curly-brace-presence': [
-            'warn',
-            { props: 'always', children: 'always' },
+            0,
+            { props: 'never', children: 'never' },
         ],
         // 파일의 경로가 틀렸는지 확인하는 옵션 false
         'import/no-unresolved': ['error', { caseSensitive: false }],
         // props spreading 허용하지 않는 경고 표시
-        'react/jsx-props-no-spreading': [1, { custom: 'ignore' }],
+        'react/jsx-props-no-spreading': 'off',
         'linebreak-style': 0,
         'import/extensions': 0,
         'no-use-before-define': 0,
@@ -80,8 +98,10 @@ module.exports = {
     },
     settings: {
         'import/resolver': {
+            typescript: {},
             node: {
                 extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                moduleDirectory: ['node_modules', './src/'],
             },
         },
     },

@@ -10,11 +10,33 @@ body {
     line-height: 1.5;
 }
 
+body.body-hidden {
+    overflow: hidden;
+}
+
 :root {
     --bk: #242424;
+    --primary: #72f0ec;
+    --gray100: #f5f5f5;
     --gray200: #e8e8e8;
     --gray300: #d6d6d6;
     --gray400: #9b9b9b;
     --pointRed: #ff0000;
-    --radius: 15px;
+    --radius: 10px;
+    --review: #ffa93b;
+    --muted: 240 4.8% 95.9%;
+    --min-w: 320px;
+    --max-w: 500px;
+}
+
+.horizontal-scroll-box::-webkit-scrollbar {
+    width: 0px;
+}
+
+.horizontal-scroll-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.horizontal-scroll-box::-webkit-scrollbar-thumb {
+    background: transparent;
 }
